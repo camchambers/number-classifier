@@ -5,14 +5,20 @@ from PIL import Image
 import sys
 from pathlib import Path
 
-# Import model architecture from train.py
-from train import DigitClassifier
+# Add parent directory to import model from api
+parent_dir = Path(__file__).parent.parent
+sys.path.insert(0, str(parent_dir))
+from api.model import DigitClassifier
 
 # Set device
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # Load model
-def load_model(model_path='model_best.pth'):
+def load_model(model_path=None):
+    if model_path is None:
+        # Default to model_best.pth in project root
+        model_path = Path(__file__).parent.parent / 'model_best.pth'
+    
     model = DigitClassifier().to(device)
     checkpoint = torch.load(model_path, map_location=device)
     model.load_state_dict(checkpoint['model_state_dict'])
