@@ -34,15 +34,24 @@ This project uses the [Handwritten Digits 0-9 dataset from Kaggle](https://www.k
 
 ```
 number-classifier/
-├── train.py              # Model training script
-├── test_model.py         # Model testing script
-├── model_best.pth        # Best trained model checkpoint
-├── model_final.pth       # Final model after all epochs
-├── requirements.txt      # Python dependencies
-├── data/
-│   └── numbers/          # Training dataset (0-9 folders)
+├── training/             # Training scripts and utilities
+│   ├── train.py         # Model training script
+│   ├── test_model.py    # Model testing script
+│   └── README.md        # Training documentation
 ├── api/                  # FastAPI backend
-└── ui/                   # React frontend (Vite)
+│   ├── main.py          # API endpoints
+│   ├── model.py         # Model architecture
+│   ├── requirements.txt # API dependencies
+│   ├── run.sh           # API startup script
+│   └── README.md        # API documentation
+├── ui/                   # React frontend (Vite)
+│   └── src/             # React components
+├── data/
+│   └── numbers/         # Training dataset (0-9 folders)
+├── model_best.pth       # Best trained model checkpoint
+├── model_final.pth      # Final model after all epochs
+├── requirements.txt     # Python dependencies
+└── README.md            # This file
 ```
 
 ## 🚀 Getting Started
@@ -75,11 +84,11 @@ number-classifier/
 Train the CNN model on the digit dataset:
 
 ```bash
-python3 train.py
+python3 training/train.py
 ```
 
 **Training Details:**
-- Architecture: 3 Conv layers + 3 FC layers
+- Architecture: 3 Conv layers + 3 FC layers (defined in `api/model.py`)
 - Input: 28x28 grayscale images
 - Batch size: 64
 - Epochs: 10
@@ -95,7 +104,7 @@ python3 train.py
 Test the trained model on individual images:
 
 ```bash
-python3 test_model.py data/numbers/5/img_1.jpg
+python3 training/test_model.py data/numbers/5/img_1.jpg
 ```
 
 **Output:**
@@ -124,10 +133,17 @@ All class probabilities:
 
 ```bash
 cd api
-uvicorn main:app --reload
+./run.sh
 ```
 
-API will be available at `http://localhost:8000`
+Or manually:
+```bash
+cd api
+python3 -m uvicorn main:app --reload
+```
+
+API will be available at `http://localhost:8000`  
+API Documentation: `http://localhost:8000/docs`
 
 ### 2. Start the UI (React + Vite)
 
