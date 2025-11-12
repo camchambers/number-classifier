@@ -1,10 +1,10 @@
-import React, { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect } from 'react';
 
 interface CanvasProps {
   onImageReady: (img: string) => void;
 }
 
-const Canvas: React.FC<CanvasProps> = ({ onImageReady }) => {
+export const Canvas = ({ onImageReady }: CanvasProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [drawing, setDrawing] = useState(false);
 

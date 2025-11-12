@@ -1,12 +1,10 @@
-import React from 'react';
-
 interface ResultProps {
   digit: number | null;
   confidence: number | null;
   probabilities: Record<number, number> | null;
 }
 
-const Result: React.FC<ResultProps> = ({ digit, confidence, probabilities }) => {
+export const ClassificationResult = ({ digit, confidence, probabilities }: ResultProps) => {
   if (digit === null || confidence === null || !probabilities) return null;
 
   return (
@@ -25,5 +23,3 @@ const Result: React.FC<ResultProps> = ({ digit, confidence, probabilities }) => 
     </div>
   );
 };
-
-export default Result;

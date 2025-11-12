@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import Canvas from '../components/Canvas';
-import Result from '../components/Result';
+import { useState } from 'react';
+import { Canvas } from '../components/Canvas';
+import { ClassificationResult } from '../components/ClassificationResult';
 import { classifyDigit } from '../api/classifier';
 
-const Home: React.FC = () => {
+export const Home = () => {
   const [digit, setDigit] = useState<number | null>(null);
   const [confidence, setConfidence] = useState<number | null>(null);
   const [probabilities, setProbabilities] = useState<Record<number, number> | null>(null);
@@ -18,9 +18,8 @@ const Home: React.FC = () => {
       setDigit(result.predicted_digit);
       setConfidence(result.confidence);
       setProbabilities(result.probabilities);
-    } catch (e) {
+    } catch {
       setError('Failed to classify digit.');
-      // Optionally log error: console.error(e);
     } finally {
       setLoading(false);
     }
@@ -32,9 +31,7 @@ const Home: React.FC = () => {
       <Canvas onImageReady={handleImageReady} />
       {loading && <p>Classifying...</p>}
       {error && <p style={{ color: 'red' }}>{error}</p>}
-      <Result digit={digit} confidence={confidence} probabilities={probabilities} />
+      <ClassificationResult digit={digit} confidence={confidence} probabilities={probabilities} />
     </div>
   );
-};
-
-export default Home;
+}
