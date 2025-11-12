@@ -1,6 +1,6 @@
 # Number Classifier
 
-A full-stack handwritten digit classification system that allows users to draw digits (0-9) on a canvas and get real-time predictions using a custom-trained PyTorch CNN model.
+A full-stack handwritten digit classification system that allows users to draw digits (0-9) on a canvas and get instant predictions using a custom-trained PyTorch CNN model.
 
 ## 🎯 Features
 
@@ -15,11 +15,9 @@ A full-stack handwritten digit classification system that allows users to draw d
 - ✅ Model Training - CNN architecture built and trained
 - ✅ Model Testing - Test script for evaluating predictions
 - ✅ Dataset Integration - 21,555 images loaded and preprocessed
-
-### In Progress
-- 🚧 FastAPI Backend - API endpoints for model inference
-- 🚧 React Frontend - Canvas drawing interface
-- 🚧 End-to-End Integration - Full stack connectivity
+- ✅ FastAPI Backend - API endpoints for model inference
+- ✅ React Frontend - Canvas drawing interface with on-demand predictions
+- ✅ End-to-End Integration - Full stack connectivity working
 
 ## 📊 Dataset
 
@@ -45,7 +43,19 @@ number-classifier/
 │   ├── run.sh           # API startup script
 │   └── README.md        # API documentation
 ├── ui/                   # React frontend (Vite)
-│   └── src/             # React components
+│   ├── src/
+│   │   ├── components/  # React components
+│   │   │   ├── App.tsx
+│   │   │   ├── Canvas.tsx
+│   │   │   └── ClassificationResult.tsx
+│   │   ├── pages/       # Page components
+│   │   │   └── Home.tsx
+│   │   ├── api/         # API client
+│   │   │   └── classifier.ts
+│   │   ├── utils/       # Utility functions
+│   │   │   └── imageUtils.ts
+│   │   └── styles/      # CSS styles
+│   └── package.json
 ├── data/
 │   └── numbers/         # Training dataset (0-9 folders)
 ├── model_best.pth       # Best trained model checkpoint
@@ -155,6 +165,14 @@ npm run dev
 
 UI will be available at `http://localhost:5173`
 
+### 3. Use the Application
+
+1. Open `http://localhost:5173` in your browser
+2. Draw a digit (0-9) on the canvas using your mouse
+3. Click "Classify" to send the drawing to the API
+4. View the predicted digit with confidence score and probability distribution
+5. Click "Clear" to reset and try another digit
+
 ## 🧠 Model Architecture
 
 ```
@@ -187,6 +205,15 @@ DigitClassifier(
 - TypeScript
 - Vite
 - (See `ui/package.json` for full list)
+
+## 🎨 UI Features
+
+- **Interactive Canvas**: Draw digits with mouse support
+- **On-Demand Classification**: Instant predictions via FastAPI backend
+- **Visual Feedback**: Display predicted digit with confidence percentage
+- **Probability Distribution**: See confidence scores for all digits (0-9)
+- **Clear Functionality**: Easy reset to draw another digit
+- **Error Handling**: User-friendly error messages for failed requests
 
 ## 🤝 Contributing
 
