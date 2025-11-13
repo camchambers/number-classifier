@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { Canvas } from '../components/Canvas';
-import { ClassificationResult } from '../components/ClassificationResult';
-import { classifyDigit } from '../api/classifier';
+import { Canvas } from '@components/Canvas';
+import { ClassificationResult } from '@components/ClassificationResult';
+import { classifyDigit } from '@api/classifier';
 
 export const Home = () => {
   const [digit, setDigit] = useState<number | null>(null);
