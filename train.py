@@ -172,14 +172,14 @@ if __name__ == "__main__":
                 'model_state_dict': model.state_dict(),
                 'optimizer_state_dict': optimizer.state_dict(),
                 'val_acc': val_acc,
-            }, 'model_best.pth')
+            }, 'models/model_best.pth')
             print(f"  ✓ New best model saved!")
 
     # Save final model
     torch.save({
         'model_state_dict': model.state_dict(),
         'classes': dataset.classes,
-    }, 'model_final.pth')
+    }, 'models/model_final.pth')
 
     print(f"\nTraining complete!")
     print(f"Best validation accuracy: {best_val_acc:.2f}%")

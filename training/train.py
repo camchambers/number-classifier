@@ -129,10 +129,10 @@ if __name__ == "__main__":
         print(f"  Train Loss: {train_loss:.4f}, Train Acc: {train_acc:.2f}%")
         print(f"  Val Loss: {val_loss:.4f}, Val Acc: {val_acc:.2f}%")
         
-        # Save best model to project root
+        # Save best model to models directory
         if val_acc > best_val_acc:
             best_val_acc = val_acc
-            model_path = parent_dir / 'model_best.pth'
+            model_path = parent_dir / 'models' / 'model_best.pth'
             torch.save({
                 'epoch': epoch,
                 'model_state_dict': model.state_dict(),
@@ -141,8 +141,8 @@ if __name__ == "__main__":
             }, model_path)
             print(f"  ✓ New best model saved!")
 
-    # Save final model to project root
-    final_model_path = parent_dir / 'model_final.pth'
+    # Save final model to models directory
+    final_model_path = parent_dir / 'models' / 'model_final.pth'
     torch.save({
         'model_state_dict': model.state_dict(),
         'classes': dataset.classes,

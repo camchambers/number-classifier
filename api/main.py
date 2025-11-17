@@ -49,7 +49,7 @@ class Base64ImageRequest(BaseModel):
 def load_model():
     """Load the trained model"""
     global model
-    model_path = Path(__file__).parent.parent / "model_best.pth"
+    model_path = Path(__file__).parent.parent / "models" / "model_best.pth"
     
     if not model_path.exists():
         raise FileNotFoundError(f"Model file not found at {model_path}")

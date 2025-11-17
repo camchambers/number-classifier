@@ -16,8 +16,8 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 # Load model
 def load_model(model_path=None):
     if model_path is None:
-        # Default to model_best.pth in project root
-        model_path = Path(__file__).parent.parent / 'model_best.pth'
+        # Default to model_best.pth in models directory
+        model_path = Path(__file__).parent.parent / 'models' / 'model_best.pth'
     
     model = DigitClassifier().to(device)
     checkpoint = torch.load(model_path, map_location=device)
