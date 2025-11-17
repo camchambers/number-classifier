@@ -1,34 +1,30 @@
 # Number Classifier
 
-A full-stack handwritten digit classification system that allows users to draw digits (0-9) on a canvas and get instant predictions using a custom-trained PyTorch CNN model.
+A handwritten digit classification system with a PyTorch CNN model, FastAPI backend, and React frontend.
 
-## 🎯 Features
+## Features
 
-- **Custom PyTorch CNN** - Convolutional neural network trained from scratch
-- **FastAPI Backend** - High-performance API for model inference
-- **Interactive React UI** - Draw digits on a canvas and get instant predictions
-- **97.89% Accuracy** - Achieved on validation set
+- PyTorch CNN trained on handwritten digits
+- FastAPI backend for model inference
+- React UI with canvas for drawing digits
+- ~98% validation accuracy
 
-## ✅ Project Status
+## Project Status
 
-### Completed
-- ✅ Model Training - CNN architecture built and trained
-- ✅ Model Testing - Test script for evaluating predictions
-- ✅ Dataset Integration - 21,555 images loaded and preprocessed
-- ✅ FastAPI Backend - API endpoints for model inference
-- ✅ React Frontend - Canvas drawing interface with on-demand predictions
-- ✅ End-to-End Integration - Full stack connectivity working
+- Model training and testing complete
+- FastAPI backend operational
+- React frontend with canvas drawing
+- End-to-end integration working
 
-## 📊 Dataset
+## Dataset
 
-This project uses the [Handwritten Digits 0-9 dataset from Kaggle](https://www.kaggle.com/datasets/olafkrastovski/handwritten-digits-0-9?resource=download).
+Uses the [Handwritten Digits 0-9 dataset from Kaggle](https://www.kaggle.com/datasets/olafkrastovski/handwritten-digits-0-9?resource=download).
 
-- **Total Images**: ~21,555
-- **Classes**: 10 (digits 0-9)
-- **Format**: Grayscale images
-- **Location**: `data/numbers/`
+- ~21,555 grayscale images
+- 10 classes (digits 0-9)
+- Located in `data/numbers/`
 
-## 🏗️ Project Structure
+## Project Structure
 
 ```
 number-classifier/
@@ -58,13 +54,14 @@ number-classifier/
 │   └── package.json
 ├── data/
 │   └── numbers/         # Training dataset (0-9 folders)
-├── model_best.pth       # Best trained model checkpoint
-├── model_final.pth      # Final model after all epochs
+├── models/
+│   ├── model_best.pth   # Best trained model checkpoint
+│   └── model_final.pth  # Final model after all epochs
 ├── requirements.txt     # Python dependencies
 └── README.md            # This file
 ```
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -89,7 +86,7 @@ number-classifier/
    - Download from [Kaggle](https://www.kaggle.com/datasets/olafkrastovski/handwritten-digits-0-9?resource=download)
    - Extract to `data/numbers/` directory
 
-## 🎓 Training the Model
+## Training
 
 Train the CNN model on the digit dataset:
 
@@ -106,10 +103,12 @@ python3 training/train.py
 - Validation split: 80/20
 
 **Output:**
-- `model_best.pth` - Best model based on validation accuracy
-- `model_final.pth` - Model after final epoch
+- `models/model_best.pth` - Best model checkpoint (highest validation accuracy during training)
+- `models/model_final.pth` - Final model state after all epochs complete
 
-## 🧪 Testing the Model
+**Note:** The API uses `model_best.pth` for inference as it typically generalizes better than the final model.
+
+## Testing
 
 Test the trained model on individual images:
 
@@ -137,7 +136,7 @@ All class probabilities:
   9:  0.00% 
 ```
 
-## 🌐 Running the Full Stack
+## Running the Application
 
 ### 1. Start the API (FastAPI)
 
@@ -173,7 +172,7 @@ UI will be available at `http://localhost:5173`
 4. View the predicted digit with confidence score and probability distribution
 5. Click "Clear" to reset and try another digit
 
-## 🧠 Model Architecture
+## Model Architecture
 
 ```
 DigitClassifier(
@@ -190,7 +189,7 @@ DigitClassifier(
 
 **Total Parameters**: ~550,000
 
-## 📦 Dependencies
+## Dependencies
 
 ### Python
 - torch >= 2.0.0
@@ -206,29 +205,26 @@ DigitClassifier(
 - Vite
 - (See `ui/package.json` for full list)
 
-## 🎨 UI Features
+## UI Features
 
-- **Interactive Canvas**: Draw digits with mouse support
-- **On-Demand Classification**: Instant predictions via FastAPI backend
-- **Visual Feedback**: Display predicted digit with confidence percentage
-- **Probability Distribution**: See confidence scores for all digits (0-9)
-- **Clear Functionality**: Easy reset to draw another digit
-- **Error Handling**: User-friendly error messages for failed requests
+- Canvas for drawing digits
+- Real-time classification
+- Confidence scores and probability distribution
+- Error handling
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
-## 📄 License
+## License
 
 This project is open source and available under the [MIT License](LICENSE).
 
-## 👤 Author
+## Author
 
 **Cam Chambers**
 - GitHub: [@camchambers](https://github.com/camchambers)
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
-- Dataset: [Olaf Krastovski's Handwritten Digits 0-9](https://www.kaggle.com/datasets/olafkrastovski/handwritten-digits-0-9)
-- Built with PyTorch, FastAPI, and React
+Dataset: [Olaf Krastovski's Handwritten Digits 0-9](https://www.kaggle.com/datasets/olafkrastovski/handwritten-digits-0-9)
