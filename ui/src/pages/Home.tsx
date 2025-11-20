@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Canvas } from '@components/Canvas';
-import { ClassificationResult } from '@components/ClassificationResult';
 import { classifyDigit } from '@api/classifier';
 
 export const Home = () => {
@@ -26,12 +25,47 @@ export const Home = () => {
   };
 
   return (
-    <div style={{ maxWidth: 400, margin: '0 auto', padding: 16 }}>
-      <h2>Draw a Digit (0-9)</h2>
-      <Canvas onImageReady={handleImageReady} />
-      {loading && <p>Classifying...</p>}
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      <ClassificationResult digit={digit} confidence={confidence} probabilities={probabilities} />
+    <div className="container">
+      <h1 className="title">Number Classifier</h1>
+      <p className="subtitle">Draw a digit from 0-9</p>
+      
+      <div className="main-content">
+        <div className="left-panel">
+          <Canvas onImageReady={handleImageReady} />
+          {loading && <p className="loading">Classifying...</p>}
+          {error && <p className="error">{error}</p>}
+          {(digit !== null && confidence !== null) && (
+            <div className="prediction">
+              <div className="prediction-digit">{digit}</div>
+              <div className="prediction-confidence">{(confidence * 100).toFixed(1)}% confidence</div>
+            </div>
+          )}
+        </div>
+        
+        {probabilities && (
+          <div className="right-panel">
+            <div className="probabilities">
+              <h4>All Probabilities</h4>
+              <div className="probability-bars">
+                {Object.entries(probabilities)
+                  .sort(([a], [b]) => Number(a) - Number(b))
+                  .map(([d, prob]) => (
+                    <div key={d} className="probability-item">
+                      <span className="probability-label">{d}</span>
+                      <div className="probability-bar-container">
+                        <div 
+                          className="probability-bar" 
+                          style={{ width: `${prob * 100}%` }}
+                        />
+                      </div>
+                      <span className="probability-value">{(prob * 100).toFixed(1)}%</span>
+                    </div>
+                  ))}
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
