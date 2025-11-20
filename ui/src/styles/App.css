@@ -1,42 +1,255 @@
-#root {
-  max-width: 1280px;
+.container {
+  max-width: 1100px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  color: #1a1a1a;
+  letter-spacing: -0.02em;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+.subtitle {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 2rem;
+  font-weight: 400;
+}
+
+.main-content {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.left-panel {
+  flex: 0 0 auto;
+}
+
+.right-panel {
+  flex: 1 1 300px;
+  max-width: 400px;
+  min-width: 300px;
+}
+
+.canvas-container {
+  display: inline-block;
+  padding: 1.5rem;
+  background: #f8f9fa;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.canvas {
+  border: 2px solid #dee2e6;
+  border-radius: 8px;
+  background: #fff;
+  cursor: crosshair;
+  display: block;
+  transition: box-shadow 0.2s;
+}
+
+.canvas:hover {
+  box-shadow: 0 0 0 3px rgba(100, 108, 255, 0.1);
+}
+
+.button-group {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  justify-content: center;
+}
+
+.btn {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+  letter-spacing: 0.01em;
+}
+
+.btn-primary {
+  background: #646cff;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #535bf2;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(100, 108, 255, 0.3);
+}
+
+.btn-secondary {
+  background: #e9ecef;
+  color: #495057;
+}
+
+.btn-secondary:hover {
+  background: #dee2e6;
+  transform: translateY(-1px);
+}
+
+.loading {
+  color: #646cff;
+  font-weight: 500;
+  margin: 1rem 0;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.error {
+  color: #dc3545;
+  font-weight: 500;
+  margin: 1rem 0;
+  padding: 0.75rem;
+  background: #ffe6e6;
+  border-radius: 8px;
+}
+
+.prediction {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 2rem;
+  border-radius: 12px;
+  margin-top: 1.5rem;
+  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
+  text-align: center;
+}
+
+.prediction-digit {
+  font-size: 5rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.03em;
+}
+
+.prediction-confidence {
+  font-size: 1.3rem;
+  opacity: 0.95;
+  font-weight: 500;
+}
+
+.probabilities {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 12px;
+  height: 100%;
+}
+
+.probabilities h4 {
+  margin: 0 0 1rem 0;
+  color: #495057;
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.probability-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.probability-item {
+  display: grid;
+  grid-template-columns: 30px 1fr 60px;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.probability-label {
+  font-weight: 700;
+  color: #495057;
+  font-size: 1rem;
+  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Mono', monospace;
+}
+
+.probability-bar-container {
+  height: 24px;
+  background: #e9ecef;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.probability-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #646cff 0%, #535bf2 100%);
+  border-radius: 12px;
+  transition: width 0.3s ease;
+}
+
+.probability-value {
+  font-size: 0.875rem;
+  color: #6c757d;
+  text-align: right;
+  font-weight: 600;
+  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Mono', monospace;
+}
+
+@media (prefers-color-scheme: light) {
+  .title {
+    color: #213547;
   }
-  to {
-    transform: rotate(360deg);
+}
+
+@media (prefers-color-scheme: dark) {
+  .title {
+    color: #ffffff;
   }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+  
+  .subtitle {
+    color: #aaa;
   }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+  
+  .canvas-container {
+    background: #2a2a2a;
+  }
+  
+  .canvas {
+    border-color: #444;
+  }
+  
+  .btn-secondary {
+    background: #3a3a3a;
+    color: #e0e0e0;
+  }
+  
+  .btn-secondary:hover {
+    background: #4a4a4a;
+  }
+  
+  .probabilities {
+    background: #2a2a2a;
+  }
+  
+  .probabilities h4 {
+    color: #e0e0e0;
+  }
+  
+  .probability-label {
+    color: #e0e0e0;
+  }
+  
+  .probability-bar-container {
+    background: #3a3a3a;
+  }
+  
+  .probability-value {
+    color: #aaa;
+  }
 }

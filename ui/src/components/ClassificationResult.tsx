@@ -8,18 +8,30 @@ export const ClassificationResult = ({ digit, confidence, probabilities }: Resul
   if (digit === null || confidence === null || !probabilities) return null;
 
   return (
-    <div style={{ marginTop: 16 }}>
-      <h3>Prediction</h3>
-      <p>Digit: <strong>{digit}</strong></p>
-      <p>Confidence: <strong>{(confidence * 100).toFixed(2)}%</strong></p>
-      <h4>Probabilities:</h4>
-      <ul>
-        {Object.entries(probabilities).map(([d, prob]) => (
-          <li key={d}>
-            {d}: {(prob * 100).toFixed(2)}%
-          </li>
-        ))}
-      </ul>
+    <div className="result-container">
+      <div className="prediction">
+        <div className="prediction-digit">{digit}</div>
+        <div className="prediction-confidence">{(confidence * 100).toFixed(1)}% confidence</div>
+      </div>
+      <div className="probabilities">
+        <h4>All Probabilities</h4>
+        <div className="probability-bars">
+          {Object.entries(probabilities)
+            .sort(([a], [b]) => Number(a) - Number(b))
+            .map(([d, prob]) => (
+              <div key={d} className="probability-item">
+                <span className="probability-label">{d}</span>
+                <div className="probability-bar-container">
+                  <div 
+                    className="probability-bar" 
+                    style={{ width: `${prob * 100}%` }}
+                  />
+                </div>
+                <span className="probability-value">{(prob * 100).toFixed(1)}%</span>
+              </div>
+            ))}
+        </div>
+      </div>
     </div>
   );
 };

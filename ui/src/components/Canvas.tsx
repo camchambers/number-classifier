@@ -79,20 +79,20 @@ export const Canvas = ({ onImageReady }: CanvasProps) => {
   };
 
   return (
-    <div>
+    <div className="canvas-container">
       <canvas
         ref={canvasRef}
         width={280}
         height={280}
-        style={{ border: '1px solid #ccc', background: '#fff' }}
+        className="canvas"
         onMouseDown={startDrawing}
         onMouseMove={draw}
         onMouseUp={stopDrawing}
         onMouseLeave={stopDrawing}
       />
-      <div style={{ marginTop: 8 }}>
-        <button onClick={handleClear}>Clear</button>
-        <button onClick={handleSubmit}>Classify</button>
+      <div className="button-group">
+        <button className="btn btn-secondary" onClick={handleClear}>Clear</button>
+        <button className="btn btn-primary" onClick={handleSubmit}>Classify</button>
       </div>
     </div>
   );
