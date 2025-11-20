@@ -2,6 +2,8 @@
 
 A handwritten digit classification system with a PyTorch CNN model, FastAPI backend, and React frontend.
 
+<img src="screenshots/ui.png" alt="Number Classifier UI" height="500">
+
 ## Features
 
 - PyTorch CNN trained on handwritten digits
